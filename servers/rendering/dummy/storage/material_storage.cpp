@@ -39,6 +39,7 @@ MaterialStorage *MaterialStorage::singleton = nullptr;
 MaterialStorage::MaterialStorage() {
 	singleton = this;
 	ShaderCompiler::DefaultIdentifierActions actions;
+	actions.custom_samplers["TEXTURE"] = "texture_sampler";
 	dummy_compiler.initialize(actions);
 }
 
