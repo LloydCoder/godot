@@ -39,7 +39,11 @@ MaterialStorage *MaterialStorage::singleton = nullptr;
 MaterialStorage::MaterialStorage() {
 	singleton = this;
 	ShaderCompiler::DefaultIdentifierActions actions;
+	// Keep sampler mappings aligned with the RD canvas renderer so valid canvas_item
+	// shaders can pass built-in textures to functions when running headlessly.
 	actions.custom_samplers["TEXTURE"] = "texture_sampler";
+	actions.custom_samplers["NORMAL_TEXTURE"] = "texture_sampler";
+	actions.custom_samplers["SPECULAR_SHININESS_TEXTURE"] = "texture_sampler";
 	dummy_compiler.initialize(actions);
 }
 
