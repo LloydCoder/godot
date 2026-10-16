@@ -39,6 +39,10 @@ MaterialStorage *MaterialStorage::singleton = nullptr;
 MaterialStorage::MaterialStorage() {
 	singleton = this;
 	ShaderCompiler::DefaultIdentifierActions actions;
+	// Match the RD canvas renderer so built-in canvas textures can be passed to shader functions in headless mode.
+	actions.custom_samplers["TEXTURE"] = "texture_sampler";
+	actions.custom_samplers["NORMAL_TEXTURE"] = "texture_sampler";
+	actions.custom_samplers["SPECULAR_SHININESS_TEXTURE"] = "texture_sampler";
 	dummy_compiler.initialize(actions);
 }
 
